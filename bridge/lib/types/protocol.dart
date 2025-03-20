@@ -1,13 +1,13 @@
-
+// also known as scheme
 enum Protocol {
   defaultProtocol(null), // prefered by the client
   http('http'),
-  https('https');
+  https('https'),
+  ftp('ftp');
 
   final String? value;
 
   const Protocol(this.value);
-
 
   static Protocol? fromString(String value) {
     for (var item in Protocol.values) {
@@ -17,7 +17,6 @@ enum Protocol {
     }
     return null;
   }
-
 
   bool isDefaultProtocol() {
     return this == Protocol.defaultProtocol;
@@ -31,7 +30,6 @@ enum Protocol {
     return value.value ?? or;
   }
 
-
   // Returns the protocol from the value
   // Returns http if defaultProtocol for avoid wrong values
   @override
@@ -39,7 +37,3 @@ enum Protocol {
     return value ?? 'http';
   }
 }
-
-
-
-
