@@ -1,16 +1,10 @@
-
 import 'package:bridge/types/body.dart';
 import 'package:bridge/types/method.dart';
 import 'package:bridge/types/protocol.dart';
 
-
-
-
 abstract interface class RequestInterface {
-  
-
-  Protocol get protocol;
-  String get domain;
+  Scheme? get protocol;
+  String? get domain;
   String get path;
 
   Method get method;
@@ -18,22 +12,16 @@ abstract interface class RequestInterface {
   Map<String, String> get headers;
   Body get body;
 
-
   String get pathWithQueryParameters;
-
 
   Uri get urlWithQueryParameters;
 
   Uri get url;
 
-  bool isDomainEmpty(); 
+  bool isDomainEmpty();
   bool hasDomain();
   bool hasQueryParameters();
   bool hasHeaders();
   bool hasBody();
   bool isDefaultProtocol();
-
 }
-
-
-

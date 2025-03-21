@@ -10,7 +10,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class WebCLient implements Client {
-  final Protocol protocol;
+  final Scheme protocol;
   final String? domain;
   final Headers headers = {};
 
@@ -19,7 +19,7 @@ class WebCLient implements Client {
     this.domain,
     //http headers
     Headers headers = const {},
-  }) : protocol = Protocol.https {
+  }) : protocol = Scheme.https {
     this.headers.addAll(headers);
   }
 
@@ -28,7 +28,7 @@ class WebCLient implements Client {
     this.domain,
     //http headers
     Headers headers = const {},
-  }) : protocol = Protocol.http {
+  }) : protocol = Scheme.http {
     this.headers.addAll(headers);
   }
 
@@ -120,11 +120,11 @@ class WebCLient implements Client {
   }
 
   bool isSecure() {
-    return protocol == Protocol.https;
+    return protocol == Scheme.https;
   }
 
   bool isInsecure() {
-    return protocol == Protocol.http;
+    return protocol == Scheme.http;
   }
 
   bool hasDomain() {
@@ -137,6 +137,5 @@ class WebCLient implements Client {
     if (req.hasDomain()) {
       return req.url;
     }
-    
   }
 }

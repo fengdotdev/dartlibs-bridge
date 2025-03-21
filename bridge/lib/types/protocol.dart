@@ -1,16 +1,14 @@
 // also known as scheme
-enum Protocol {
-  defaultProtocol(null), // prefered by the client
+enum Scheme {
   http('http'),
-  https('https'),
-  ftp('ftp');
+  https('https'); // this must be the default protocol 
 
-  final String? value;
+  final String value;
 
-  const Protocol(this.value);
+  const Scheme(this.value);
 
-  static Protocol? fromString(String value) {
-    for (var item in Protocol.values) {
+  static Scheme? fromString(String value) {
+    for (var item in Scheme.values) {
       if (item.value == value) {
         return item;
       }
@@ -18,22 +16,10 @@ enum Protocol {
     return null;
   }
 
-  bool isDefaultProtocol() {
-    return this == Protocol.defaultProtocol;
-  }
 
-  bool isNull() {
-    return this == Protocol.defaultProtocol;
-  }
 
-  static String fromEnumOr(Protocol value, String or) {
-    return value.value ?? or;
-  }
-
-  // Returns the protocol from the value
-  // Returns http if defaultProtocol for avoid wrong values
   @override
   String toString() {
-    return value ?? 'http';
+    return  value;
   }
 }

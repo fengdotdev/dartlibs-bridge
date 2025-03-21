@@ -5,10 +5,10 @@ import 'package:bridge/types/protocol.dart';
 
 class Request implements RequestInterface {
   @override
-  final Protocol protocol;
+  final Scheme? protocol;
   @override
-  final String domain;
-  final String _path;
+  final String? domain;
+  final String? _path;
   @override
   final Method method;
   @override
@@ -19,7 +19,7 @@ class Request implements RequestInterface {
   final Body body;
 
   Request({
-    this.protocol = Protocol.defaultProtocol,
+    this.protocol = Scheme.https,
     this.domain = "",
     required  String path,
      this.method = Method.get,
@@ -31,7 +31,7 @@ class Request implements RequestInterface {
 
   // return a request with the method set to get
   Request.get({
-    this.protocol = Protocol.defaultProtocol,
+    this.protocol = Scheme.https,
     this.domain = "",
     required  String path,
     this.queryParameters = const {},
@@ -41,7 +41,7 @@ class Request implements RequestInterface {
 
 
   Request.getNoBody({
-    this.protocol = Protocol.defaultProtocol,
+    this.protocol = Scheme.https,
     this.domain = "",
 
     required  String path,
@@ -50,7 +50,7 @@ class Request implements RequestInterface {
   }) : method = Method.get, body = Body.empty(), _path = path;
 
   Request.post({
-    this.protocol = Protocol.defaultProtocol,
+    this.protocol = Scheme.defaultProtocol,
     this.domain = "",
     required  String path,
     this.queryParameters = const {},
@@ -59,7 +59,7 @@ class Request implements RequestInterface {
   }) : method = Method.post, _path = path;
 
   Request.postNoBody({
-    this.protocol = Protocol.defaultProtocol,
+    this.protocol = Scheme.defaultProtocol,
     this.domain = "",
     required  String path,
     this.queryParameters = const {},
@@ -68,7 +68,7 @@ class Request implements RequestInterface {
 
 
   Request.delete({
-    this.protocol = Protocol.defaultProtocol,
+    this.protocol = Scheme.defaultProtocol,
     this.domain = "",
     required  String path,
     this.queryParameters = const {},
@@ -129,7 +129,7 @@ class Request implements RequestInterface {
 
   @override
   bool isDefaultProtocol() {
-    return protocol == Protocol.defaultProtocol;
+    return protocol == Scheme.defaultProtocol;
   }
 
   @override
