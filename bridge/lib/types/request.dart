@@ -5,7 +5,7 @@ import 'package:bridge/types/protocol.dart';
 
 class Request implements RequestInterface {
   @override
-  final Scheme? protocol;
+  final Scheme? scheme;
   @override
   final String? domain;
   final String? _path;
@@ -19,8 +19,8 @@ class Request implements RequestInterface {
   final Body body;
 
   Request({
-    this.protocol = Scheme.https,
-    this.domain = "",
+    this.scheme,
+    this.domain,
     required  String path,
      this.method = Method.get,
      this.queryParameters = const {},
@@ -31,50 +31,13 @@ class Request implements RequestInterface {
 
   // return a request with the method set to get
   Request.get({
-    this.protocol = Scheme.https,
-    this.domain = "",
+    this.scheme,
+    this.domain,
     required  String path,
     this.queryParameters = const {},
     this.headers = const {},
     required this.body,
   }) : method = Method.get, _path = path;
-
-
-  Request.getNoBody({
-    this.protocol = Scheme.https,
-    this.domain = "",
-
-    required  String path,
-    this.queryParameters = const {},
-    this.headers = const {},
-  }) : method = Method.get, body = Body.empty(), _path = path;
-
-  Request.post({
-    this.protocol = Scheme.defaultProtocol,
-    this.domain = "",
-    required  String path,
-    this.queryParameters = const {},
-    this.headers = const {},
-    required this.body,
-  }) : method = Method.post, _path = path;
-
-  Request.postNoBody({
-    this.protocol = Scheme.defaultProtocol,
-    this.domain = "",
-    required  String path,
-    this.queryParameters = const {},
-    this.headers = const {},
-  }) : method = Method.post, body = Body.empty(), _path = path;
-
-
-  Request.delete({
-    this.protocol = Scheme.defaultProtocol,
-    this.domain = "",
-    required  String path,
-    this.queryParameters = const {},
-    this.headers = const {},
-    required this.body,
-  }) : method = Method.delete, _path = path;
 
 
 
@@ -134,7 +97,7 @@ class Request implements RequestInterface {
 
   @override
   bool hasDomain() {
-    return domain.isNotEmpty;
+    return (domain != null && domain!.isNotEmpty);
   }
 }
 
