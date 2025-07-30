@@ -1,14 +1,11 @@
 
+import 'dart:io';
+
 import 'package:bridge/interfaces/request_interface.dart';
   
 
   
 class Request implements RequestInterface{
-
-
-
-
-
 
 
     @override
@@ -134,3 +131,19 @@ String removehash(String input) {
   }
   return input;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+HttpClient

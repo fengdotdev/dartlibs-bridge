@@ -2,13 +2,7 @@ import 'package:bridge/types/body.dart';
 import 'package:bridge/types/method.dart';
 import 'package:bridge/types/protocol.dart';
 
-
-
-
-
-abstract  interface class RequestInterface {
-  bool get isBridgeSwapable; // if true, bridge can swap the webclient with the bridge client (io, libc, etc)
-  bool get isExternal; // if true, the request is from an external source and only work with webclient
+abstract interface class RequestInterface {
   Scheme? get scheme;
   String? get domain;
   String? get path;
@@ -22,7 +16,14 @@ abstract  interface class RequestInterface {
   String get queryParametersFormatted;
   String get fragmentFormatted;
   Uri? get url;
-  
+  String?
+  get bridgeFullUrl; // if isBridgeRequest is true, return a string complaining with the bridge client, else null
+
+  // boolen flags
+  bool
+  get isBridgeSwapable; // if true, bridge can swap the webclient with the bridge client (io, libc, etc)
+  bool
+  get isExternal; // if true, the request is from an external source and only work with webclient
   bool get isComplete;
   bool get isCompleteWithPath;
   bool get hasScheme;
@@ -33,8 +34,4 @@ abstract  interface class RequestInterface {
   bool get hasHeaders;
   bool get hasBody;
   bool get isBridgeRequest;
-  String? get bridgeFullUrl ; // if isBridgeRequest is true, return a string complaining with the bridge client, else null
 }
-
-
-
